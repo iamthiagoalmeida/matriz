@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <locale.h>
+
+#define MAX 13
+#define V 10
+
+//representação de grafos
+ 
+struct listaAresta{
+	int verticeOrigem;
+	int verticeDestino;
+	float peso;
+}aresta[MAX];
+
+int mAdj[V][V];
+
+
+void inicializar();
+void imprimir();
+void imprimirMatriz();
+void transformaEmMatriz();
+
+void main(void){
+	inicializar();
+	imprimir();
+	transformaEmMatriz();
+	imprimirMatriz();
+}
+
+void inicializar(){
+    setlocale(LC_ALL,"Portuguese");
+	
+	aresta[0].verticeOrigem = 1;
+	aresta[0].verticeDestino = 2;
+	
+	aresta[1].verticeOrigem = 1;
+	aresta[1].verticeDestino = 3;
+	
+	aresta[2].verticeOrigem = 2;
+	aresta[2].verticeDestino = 4;
+	
+	aresta[3].verticeOrigem = 3;
+	aresta[3].verticeDestino = 4;
+	
+	aresta[4].verticeOrigem = 4;
+	aresta[4].verticeDestino = 6;
+	
+	aresta[5].verticeOrigem = 2;
+	aresta[5].verticeDestino = 10;
+	
+	aresta[6].verticeOrigem = 10;
+	aresta[6].verticeDestino = 7;
+	
+	aresta[7].verticeOrigem = 4;
+	aresta[7].verticeDestino = 5;
+	
+	aresta[8].verticeOrigem = 5;
+	aresta[8].verticeDestino = 6;
+	
+	aresta[9].verticeOrigem = 5;
+	aresta[9].verticeDestino = 7;
+	
+	aresta[10].verticeOrigem = 7;
+	aresta[10].verticeDestino = 8;
+	
+	aresta[11].verticeOrigem = 6;
+	aresta[11].verticeDestino = 9;
+	
+	aresta[12].verticeOrigem = 8;
+	aresta[12].verticeDestino = 9;
+	
+	aresta[13].verticeOrigem = 4;
+	aresta[13].verticeDestino = 6;
+	
+}
+
+void imprimir(){
+	printf("\n----Lista arestas-----\n");
+	int i;
+	for(i = 0; i < MAX; i++){
+		printf("%d <=> %d\n",aresta[i].verticeOrigem, aresta[i].verticeDestino);
+	}
+}
+
+void imprimirMatriz(){
+    printf("\n---------- Matriz ----------\n");
+    int i,j;
+    for(i = 0; i < V; i++){
+        for(j = 0; j < V; j++){
+        printf(" %d ",mAdj[i][j]);
+    }
+    printf("\n");
+}
+    printf("\n---------- Fim ----------\n");
+}
+
+void transformaEmMatriz(){
+    int i;
+    for(i = 0; i < MAX; i++){
+        mAdj[(aresta[i].verticeOrigem - 1)][(aresta[i].verticeDestino - 1)] = 1;
+        mAdj[(aresta[i].verticeDestino - 1)][(aresta[i].verticeOrigem - 1)] = 1;
+    }
+    
+}
+
